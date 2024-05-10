@@ -1,0 +1,68 @@
+{
+	"songs": [
+		[
+			"     VS Whitty",
+			"none",
+			[
+				44,
+				44,
+				44
+			]
+		],
+		[
+			"Lo Fight",
+			"whitty",
+			[
+				44,
+				44,
+				44
+			]
+		],
+		[
+			"Overhead",
+			"whitty",
+			[
+				44,
+				44,
+				44
+			]
+		],
+		[
+			"Ballistic",
+			"whitty-mad",
+			[
+				255,
+				0,
+				0
+			]
+		],
+		[
+			"Ballistic Old",
+			"whitty-mad",
+			[
+				255,
+				0,
+				0
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "",
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"storyName": "Your New Week",
+	"weekName": "Custom Week",
+	"freeplayColor": [
+		44,
+		44,
+		44
+	],
+	"hideStoryMode": false,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

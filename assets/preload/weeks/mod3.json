@@ -1,0 +1,50 @@
+{
+	"songs": [
+		[
+			"     VS Tricky",
+			"none",
+			[
+				44,
+				44,
+				44
+			]
+		],
+		[
+			"Improbable Outset",
+			"tricky",
+			[
+				44,
+				44,
+				44
+			]
+		],
+		[
+			"Madness",
+			"tricky-mad",
+			[
+				44,
+				44,
+				44
+			]
+	    ]	
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "",
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"storyName": "Your New Week",
+	"weekName": "Custom Week",
+	"freeplayColor": [
+		44,
+		44,
+		44
+	],
+	"hideStoryMode": false,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

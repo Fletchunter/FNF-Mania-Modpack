@@ -1,0 +1,39 @@
+{
+	"songs": [
+                ["     B Side", "none", [44, 44, 44]],
+		["Tutorial B", "gf-b", [146, 113, 253]],
+		["Bopeebo B", "dad-b", [146, 113, 253]],
+		["Fresh B", "dad-b", [146, 113, 253]],
+		["Dad Battle B", "dad-b", [146, 113, 253]],
+		["Spookeez B", "spooky-b", [34, 51, 68]],
+		["South B", "spooky-b", [34, 51, 68]],
+		["Pico B", "pico-b", [148, 22, 83]],
+		["Philly Nice B", "pico-b", [148, 22, 83]],
+		["Blammed B", "pico-b", [148, 22, 83]],
+		["Satin Panties B", "mom-b", [252, 150, 215]],
+		["High B", "mom-b", [252, 150, 215]],
+		["Milf B", "mom-b", [252, 150, 215]],
+		["Cocoa B", "parents-b", [160, 209, 255]],
+		["Eggnog B", "parents-b", [160, 209, 255]],
+		["Winter Horrorland B", "monster-b", [160, 209, 255]],
+		["Senpai B", "senpai-pixel-b", [255, 120, 191]],
+                ["Improbable Outset", "senpai-pixel-b", [255, 120, 191]],
+		["Roses B", "senpai-pixel-b", [255, 120, 191]],
+		["Thorns B", "spirit-pixel-b", [255, 120, 191]]
+	],
+
+	"weekCharacters": [
+		"",
+		"",
+		""
+	],
+	"weekBackground": "",
+
+	"storyName": "",
+	"weekBefore": "",
+	"weekName": "",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}
