@@ -1,0 +1,12 @@
+in order to compile this stupid mod.
+you have to follow the dependecies below. maybe this will stay in 0.6.3 instead of the latest version
+
+haxe 4.2.5 (This is important! stay at this version)
+
+flixel: 4.11.0
+flixel-addons: 2.11.0
+flixel-ui: 2.5.0
+hscript: 2.5.0
+hxCodec: 2.5.1
+lime: 7.9.0
+openfl: 9.1.0

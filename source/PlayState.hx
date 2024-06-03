@@ -59,7 +59,9 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Conductor.Rating;
+#if sys
 import sys.io.File;
+#end
 import haxe.Json;
 import haxe.Timer;
 
@@ -74,10 +76,13 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-#if (hxCodec >= "2.6.1") import hxcodec.VideoHandler as MP4Handler;
-#elseif (hxCodec == "2.6.0") import VideoHandler as MP4Handler;
-#else import vlc.MP4Handler; #end
+#if (hxCodec >= "3.0.0") import hxcodec.flixel.FlxVideo as VideoHandler;
+#elseif (hxCodec >= "2.6.1") import hxcodec.VideoHandler as VideoHandler;
+#elseif (hxCodec == "2.6.0") import VideoHandler;
+#else import vlc.MP4Handler as VideoHandler; 
 #end
+#end
+
 
 using StringTools;
 
@@ -479,8 +484,6 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
-
 		#if desktop
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
@@ -492,6 +495,8 @@ class PlayState extends MusicBeatState
 		{
 			detailsText = "Freeplay";
 		}
+
+		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
 
 		// String for when the game is paused
 		detailsPausedText = "Paused - " + detailsText;
@@ -1421,7 +1426,7 @@ class PlayState extends MusicBeatState
 			char.setPosition(GF_X, GF_Y);
 			char.scrollFactor.set(0.95, 0.95);
 			char.danceEveryNumBeats = 2;
-		}
+		} 
 		char.x += char.positionArray[0];
 		char.y += char.positionArray[1];
 	}
@@ -1443,13 +1448,25 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:MP4Handler = new MP4Handler();
-		video.playVideo(filepath);
-		video.finishCallback = function()
-		{
-			startAndEnd();
-			return;
-		}
+		var video:VideoHandler = new VideoHandler();
+			#if (hxCodec >= "3.0.0")
+			// Recent versions
+			video.play(filepath);
+			video.onEndReached.add(function()
+			{
+				video.dispose();
+				startAndEnd();
+				return;
+			}, true);
+			#else
+			// Older versions
+			video.playVideo(filepath);
+			video.finishCallback = function()
+			{
+				startAndEnd();
+				return;
+			}
+			#end
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
@@ -2861,7 +2878,7 @@ class PlayState extends MusicBeatState
 				daTxtColor = 0xFFFFFF00;
             } else if (healthDmg > 1.6) {
                 daTxtColor = 0xFFFF0000;
-            } else if (healthDmg > 2) {
+            } else if (healthDmg > 1.99) {
                 daTxtColor = 0xFF404040;
             } else {
                 daTxtColor = 0xFF00FF00;
@@ -4581,7 +4598,16 @@ class PlayState extends MusicBeatState
 					popUpScore(note);
 				}
 
-				if(health > 2) health = 2;
+				if(health > 2) {
+					health = 2;
+				} else {
+					if (!note.isSustainNote)
+					{
+						RecalculateRating(true);
+						trace("Your Health: " + health);
+						trace("Your Health Gain: " + daHealthGain);
+					}
+				}
 
 				if(healthDmg > 2) healthDmg = 2;
 
@@ -4610,6 +4636,8 @@ class PlayState extends MusicBeatState
 								health -= daHealthDeplete;
 								daHealthDeplete = 0;
 								healthDmg = 0;
+							} else {
+								daHealthGain = 0;
 							}
 						}
 					}
@@ -4617,8 +4645,6 @@ class PlayState extends MusicBeatState
 					health += note.hitHealth * healthGain;
 				}
 
-				RecalculateRating(true);
-	
 				if(!note.noAnimation) {
 					var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))];
 	

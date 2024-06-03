@@ -405,20 +405,22 @@ class FreeplayState extends MusicBeatState
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatToLoadSong(songLowercase, curDifficulty);
 
+			#if sys
 			if (!sys.FileSystem.exists(Paths.json(WeekData.getWeekFileName() + '/' + songLowercase + '/' + poop)))
-				{
-					FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-					return;
-				} else {
+			{
+				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+				return;
+			} else {
+				
+				getWeekName = WeekData.getWeekFileName();
 					
-					getWeekName = WeekData.getWeekFileName();
+				PlayState.SONG = Song.loadFromJson(getWeekName, poop, songLowercase); // i did this so the assets/data file will look so organized and it saves some time while looking around thorugh assets/data so you wont lose braincell 
 					
-					PlayState.SONG = Song.loadFromJson(getWeekName, poop, songLowercase); // i did this so the assets/data file will look so organized and it saves some time while looking around thorugh assets/data so you wont lose braincell 
-					
-			        PlayState.isStoryMode = false;
-			        PlayState.storyDifficulty = curDifficulty;
-			        PlayState.storyMode = curMode;
-				}
+					PlayState.isStoryMode = false;
+					PlayState.storyDifficulty = curDifficulty;
+					PlayState.storyMode = curMode;
+			}
+			#end
 
 			trace(poop);
 			
